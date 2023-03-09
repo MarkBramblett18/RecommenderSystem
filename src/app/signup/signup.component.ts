@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignupComponent implements OnInit {
 
+  title = 'Webflix - Sign Up';
+
   constructor() { }
 
   ngOnInit(): void {
