@@ -1,1 +1,30 @@
-<p>login works!</p>
+<body>
+<div id="textboxBackground">
+  <div class="column">
+    <mat-card>
+      <div id="formHolder">
+        <h3><b>Log In:</b></h3>
+        <form [formGroup]="loginForm" (ngSubmit)="loginUser()" type="">
+          <p>
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input autocomplete="off" formControlName="email" type="email" matInput placeholder="Email">
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline">
+              <mat-label>Password</mat-label>
+              <input autocomplete="off" formControlName="password" type="password" matInput placeholder="Password">
+            </mat-form-field>
+          </p>
+          <div *ngIf="errorMessage != ''" class="error-style">
+            <span>{{ errorMessage }}</span>
+          </div>
+
+          <button mat-raised-button color="primary">Login</button>
+        </form>
+      </div>
+    </mat-card>
+  </div>
+</div> <!--this div is to get rid of green at the bottom, uncomment the comment div up there to get it back-->
+</body>

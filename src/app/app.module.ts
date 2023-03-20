@@ -8,6 +8,15 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import {MatToolbarModule} from "@angular/material/toolbar";
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,11 +24,19 @@ import { SignupComponent } from './signup/signup.component';
     LoginComponent,
     SignupComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+
+        MatButtonModule,
+        MatCardModule,
+        MatInputModule,
+
+        FormsModule,
+        ReactiveFormsModule,
+        MatToolbarModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
