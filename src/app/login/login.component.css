@@ -4,6 +4,10 @@
   margin-right: auto;
 }
 
+h3{
+  color:#F7FFF7;
+}
+
 :host {
   display: flex;
   flex-direction: column;
@@ -12,8 +16,7 @@
 }
 .mat-card{
   margin:auto;
-  background-color: #00704a;
-  border:3px solid black;
+  background-color: #292F36;
   min-width:300px;
   max-width: 300px;
 }
@@ -26,7 +29,19 @@
   text-align:center;
 }
 
+.mat-form-field{
+  color: #F7FFF7;
+}
+
+::ng-deep .mat-form-field-label {
+  color: #F7FFF7;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #F7FFF7;
+}
+
 .mat-raised-button.mat-primary{
-  background-color: #85C446;
-  color: black;
+  background-color: #3C9E98;
+  color: #F7FFF7;
 }
