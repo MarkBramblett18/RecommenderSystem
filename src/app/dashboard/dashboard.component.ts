@@ -44,52 +44,5 @@ export class DashboardComponent implements OnInit {
   }
 
 
-  reviewLoad(): void {
-    this.activeTable = 'rev';
-    this.movieCards = [];
-    for(const movie in this.reviewTable) {
-      //request movie information from api
-      this.movieCards.push ({
-        //add movie to movieCards
-      })
-    }
-  }
 
-  recommendLoad(): void {
-    this.activeTable = 'rec';
-    this.movieCards = [];
-    for(const imdbID in this.recommendTable) {
-      //request movie information from api
-      this.movieCards.push ({
-        //add movie to movieCards
-      })
-    }
-  }
-
-  search(): void {
-    if(this.findMovie.get('type') == 'id'){
-      //request api for info using imdbID
-      this.selectMovie = {title: '', img: '', desc: '', rating: -1, imdbID: ''}; //change to setting movie based on api info
-    } else
-    {
-      //request api for info using title
-      this.selectMovie = {title: '', img: '', desc: '', rating: -1, imdbID: ''}; //change to setting movie based on api info
-    }
-    this.selectedMovie = true;
-  }
-
-  add(): void {
-    this.selectMovie.rating = this.addMovie.get('review');
-    this.movieCards.push(this.selectMovie);
-    //add review to DB
-    this.addMovie.reset();
-    this.findMovie.reset();
-    this.selectedMovie = false;
-  }
-
-  delete(movie: MovieCard){
-    const index = this.movieCards.indexOf(movie, 0);
-    this.movieCards.splice(index, 1);
-    //delete review from DB
-  }
 }
