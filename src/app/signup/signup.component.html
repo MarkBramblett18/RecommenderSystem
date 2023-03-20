@@ -1,27 +1,32 @@
-<mat-card>
-  <form [formGroup]="signupForm" (ngSubmit)="signup()">
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>Full Name</mat-label>
-        <input autocomplete="off" formControlName="displayName" type="text" matInput placeholder="Display Name">
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>Email</mat-label>
-        <input formControlName="email" type="email" matInput placeholder="Email">
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>Password</mat-label>
-        <input autocomplete="off" formControlName="password" type="password" matInput placeholder="Password">
-      </mat-form-field>
-    </p>
-    <div *ngIf="errorMessage != ''" class="error-style">
-      <span>{{ errorMessage }}</span>
-    </div>
+<div class="column">
+  <mat-card>
+    <div id="formHolder">
+      <h3><b>Sign Up:</b></h3>
+      <form [formGroup]="signupForm" (ngSubmit)="signup()">
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Display Name</mat-label>
+            <input autocomplete="off" formControlName="displayName" type="text" matInput placeholder="Display Name">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input formControlName="email" type="email" matInput placeholder="Email">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input autocomplete="off" formControlName="password" type="password" matInput placeholder="Password">
+          </mat-form-field>
+        </p>
+        <div *ngIf="errorMessage != ''" class="error-style">
+          <span>{{ errorMessage }}</span>
+        </div>
 
-    <button mat-raised-button color="primary">Signup</button>
-  </form>
-</mat-card>
+        <button mat-raised-button color="primary">Sign up</button>
+      </form>
+    </div>
+  </mat-card>
+</div>
