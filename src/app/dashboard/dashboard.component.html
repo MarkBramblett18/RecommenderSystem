@@ -1,1 +1,74 @@
-<p>dashboard works!</p>
+<div class="dashHolder">
+  <div class="tableDiv">
+    <table class="dashNav">
+      <tbody>
+      <tr class="dashOption">
+        <td class="optionSection"><a class="optionText" (click)="reviewLoad()">Reviewed Movies</a></td>
+      </tr>
+      <tr class="dashOption">
+        <td class="optionSection"><a class="optionText" (click)="recommendLoad()">Recommended Movies</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="cardDiv">
+    <div class="container">
+      <div class="row">
+        <div class="addRuleDiv" *ngIf="activeTable == 'rev'">
+          <form *ngIf="!selectedMovie" [formGroup]="findMovie" (ngSubmit)="search()">
+            <p>
+              <mat-form-field appearance="outline">
+                <mat-label>Title</mat-label>
+                <input autocomplete="off" formControlName="rule" type="text" matInput placeholder="Title">
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field appearance="outline">
+                <mat-label>Search Type</mat-label>
+                <input autocomplete="off" formControlName="fix" type="text" matInput placeholder="Search Type">
+              </mat-form-field>
+            </p>
+            <button mat-raised-button color="primary">Search</button>
+          </form>
+          <mat-card *ngIf="selectedMovie">
+            <mat-card-content>
+              <mat-card-title>
+                <h4>{{selectMovie.title}}</h4>
+              </mat-card-title>
+
+              <mat-card-title>
+                <h4>{{selectMovie.desc}}</h4>
+              </mat-card-title>
+            </mat-card-content>
+          </mat-card>
+          <form *ngIf="selectedMovie" [formGroup]="addMovie" (ngSubmit)="add()">
+            <p>
+              <mat-form-field appearance="outline">
+                <mat-label>Review</mat-label>
+                <input autocomplete="off" formControlName="rule" type="text" matInput placeholder="Review">
+              </mat-form-field>
+            </p>
+            <button mat-raised-button color="primary">Add</button>
+          </form>
+        </div>
+        <div class="col-md-3 mx-auto my-5 rules" *ngFor="let card of movieCards">
+          <div class="movieHolder">
+            <mat-card>
+              <mat-card-content>
+                <mat-card-title>
+                  <h4>{{card.title}}</h4>
+                </mat-card-title>
+
+                <mat-card-title>
+                  <h4>{{card.desc}}</h4>
+                </mat-card-title>
+
+                <button mat-raised-button color="primary" *ngIf="activeTable == 'rev'" (click)="delete(card)">Delete</button>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

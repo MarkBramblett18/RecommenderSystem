@@ -1,1 +1,102 @@
 
+.tableDiv {
+  height: -webkit-calc(100% - 85px);
+  float: left;
+  width:15%;
+}
+
+.cardDiv {
+  height: -webkit-calc(100% - 85px);
+  float: left;
+  width:85%;
+}
+
+.dashHolder {
+  height: -webkit-calc(100% - 85px);
+}
+
+.optionText {
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  font-size: 25px;
+  font-family: Futura,Trebuchet MS,Arial,sans-serif;
+}
+.optionText:hover{
+  color: #ADADAD;
+}
+
+.dashOption {
+  width: 100%;
+}
+
+.optionSection {
+  width:100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.dashNav {
+  width: 90%;
+  background-color: #292F36;
+  border-bottom-right-radius: 23px;
+  border-bottom-left-radius: 23px;
+  border-top-right-radius: 23px;
+  border-top-left-radius: 23px;
+  margin: auto;
+}
+
+.container {
+  width:85%;
+  height: 85%;
+  margin:auto;
+  background-color:#292F36;
+  padding:5%;
+  padding: top 2%;
+  border-bottom-right-radius: 23px;
+  border-bottom-left-radius: 23px;
+  border-top-right-radius: 23px;
+  border-top-left-radius: 23px;
+  overflow-y:scroll;
+}
+
+.addRuleDiv {
+  background-color:aliceblue;
+  border-bottom-right-radius: 23px;
+  border-bottom-left-radius: 23px;
+  border-top-right-radius: 23px;
+  border-top-left-radius: 23px;
+  margin: auto;
+  width:50%;
+  text-align:center;
+  padding: top 5%;
+}
+
+.mat-card{
+  margin:auto;
+  background-color: #4ECDC4;
+  border:3px solid black;
+  min-width: 100%;
+  max-width: 100%;
+}
+
+.movieHolder {
+  max-width:80%;
+  padding: 10px;
+}
+
+.mat-raised-button.mat-primary{
+  background-color: #3C9E98;
+  color: #F7FFF7;
+}
+
+.rules {
+  padding: top 10px;
+  display: table;
+  width: 100%
+}
+
