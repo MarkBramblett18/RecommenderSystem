@@ -18,14 +18,14 @@
           <form *ngIf="!selectedMovie" [formGroup]="findMovie" (ngSubmit)="search()">
             <p>
               <mat-form-field appearance="outline">
-                <mat-label>Title</mat-label>
-                <input autocomplete="off" formControlName="rule" type="text" matInput placeholder="Title">
+                <mat-label>Title/IMDB-ID</mat-label>
+                <input autocomplete="off" formControlName="input" type="text" matInput placeholder="Title/IMDB-ID">
               </mat-form-field>
             </p>
             <p>
               <mat-form-field appearance="outline">
                 <mat-label>Search Type</mat-label>
-                <input autocomplete="off" formControlName="fix" type="text" matInput placeholder="Search Type">
+                <input autocomplete="off" formControlName="type" type="text" matInput placeholder="Search Type">
               </mat-form-field>
             </p>
             <button mat-raised-button color="primary">Search</button>
@@ -45,10 +45,10 @@
             <p>
               <mat-form-field appearance="outline">
                 <mat-label>Review</mat-label>
-                <input autocomplete="off" formControlName="rule" type="text" matInput placeholder="Review">
+                <input autocomplete="off" formControlName="review" type="text" matInput placeholder="Review">
               </mat-form-field>
             </p>
-            <button mat-raised-button color="primary">Add</button>
+            <button mat-raised-button color="primary">Add</button> <button mat-raised-button (click)="reselect()" color="primary">Wrong Movie</button>
           </form>
         </div>
         <div class="col-md-3 mx-auto my-5 rules" *ngFor="let card of movieCards">

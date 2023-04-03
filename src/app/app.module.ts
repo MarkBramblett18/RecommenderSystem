@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 
+import { HttpClientModule } from "@angular/common/http";
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -38,6 +39,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
         FormsModule,
         ReactiveFormsModule,
         MatToolbarModule,
+
+      HttpClientModule,
     ],
   providers: [],
   bootstrap: [AppComponent]
