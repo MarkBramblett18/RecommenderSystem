@@ -17,6 +17,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
         MatToolbarModule,
 
       HttpClientModule,
+        NgbModule,
     ],
   providers: [],
   bootstrap: [AppComponent]
