@@ -19,6 +19,8 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatSelectModule} from "@angular/material/select";
+import { ResourcesComponent } from './resources/resources.component';
+import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import {MatSelectModule} from "@angular/material/select";
     HomeComponent,
     LoginComponent,
     SignupComponent,
-    DashboardComponent
+    DashboardComponent,
+    ResourcesComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
