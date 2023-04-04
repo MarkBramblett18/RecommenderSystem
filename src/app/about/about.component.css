@@ -109,3 +109,8 @@ ul {
   padding-top: 15px;
   padding-bottom: 15px;
 }
+
+.linkedpages {
+  text-decoration: none;
+  color: #4ECDC4;
+}
