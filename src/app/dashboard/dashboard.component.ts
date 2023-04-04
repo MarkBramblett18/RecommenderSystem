@@ -122,7 +122,7 @@ export class DashboardComponent implements OnInit {
   recommendLoad(): void {
     this.searchMSG = '';
     this.starRating = 0;
-    this.addMovie.reset();
+    this.resetAddMovie();
     this.findMovie.reset();
     this.selectedMovie = false;
     this.movieCards = [];
@@ -142,23 +142,38 @@ export class DashboardComponent implements OnInit {
   }
 
   add(): void {
-    if(this.starRating=0){
+    let added = false;
+    if(!(this.addMovie.value.review>0)){
       this.searchMSG = 'A star rating is required to add a movie.';
-      return;
+    } else {
+      this.searchMSG = '';
+      this.selectMovie.rating = this.addMovie.value.review;
+      //this.selectMovie.rating = this.starRating;
+      this.movieCards.forEach((movie) => {
+        if (movie.imdbID == this.selectMovie.imdbID) {
+          added = true;
+        }
+      });
+      if (added) {
+        this.searchMSG = 'Movie already reviewed.';
+      } else {
+        this.movieCards.push(this.selectMovie);
+        //add review to DB ensure to div selectMovie.rating by 2
+        this.starRating = 0;
+        this.resetAddMovie();
+        this.findMovie.reset();
+        this.selectedMovie = false;
+      }
     }
-    this.searchMSG = '';
-    this.selectMovie.rating = this.addMovie.value.review;
-    //this.selectMovie.rating = this.starRating;
-    this.movieCards.push(this.selectMovie);
-    //add review to DB ensure to div selectMovie.rating by 2
-    this.starRating = 0;
-    this.addMovie.reset();
-    this.findMovie.reset();
-    this.selectedMovie = false;
+  }
+
+  resetAddMovie(): void {
+    this.addMovie.value.review = 0;
   }
 
   reselect(): void {
     this.selectedMovie = false;
+    this.searchMSG = '';
   }
 
   delete(movie: MovieCard){
