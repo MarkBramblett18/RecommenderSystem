@@ -64,7 +64,7 @@
 }
 
 .addMovieDiv {
-  background-color: #F7FFF7;
+  background-color: #3C9E98;
   border-bottom-right-radius: 23px;
   border-bottom-left-radius: 23px;
   border-top-right-radius: 23px;
@@ -80,7 +80,11 @@
 }
 
 .mat-raised-button.mat-primary{
-  background-color: #3C9E98;
+  background-color: #4ECDC4;
+  color: #F7FFF7;
+}
+
+.searchMSG{
   color: #F7FFF7;
 }
 
@@ -91,10 +95,40 @@
 
 .stars {
   font-size: 2rem;
+  color: #F7FFF7;
 }
 
 .card-stars {
   font-size: 1.5rem;
+  color: #292F36;
+}
+
+.mat-form-field{
+  color: #F7FFF7;
+}
+
+::ng-deep .mat-form-field-label {
+  color: #F7FFF7;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #F7FFF7;
+}
+
+.mat-select{
+  color: #F7FFF7;
+}
+
+::ng-deep .mat-select-arrow{
+  color: #F7FFF7;
+}
+
+::ng-deep .mat-select-panel {
+  color: #F7FFF7;
+}
+
+::ng-deep .mat-select-value {
+  color: #F7FFF7;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
