@@ -16,13 +16,7 @@
       <div class="row">
         <div class="addMovieDiv" *ngIf="activeTable == 'rev'">
           <form *ngIf="!selectedMovie" [formGroup]="findMovie" (ngSubmit)="search()">
-            <p>
-              <mat-label class="searchMSG" *ngIf="searchMSG != ''"> {{searchMSG}} <br></mat-label>
-              <mat-form-field appearance="outline">
-                <mat-label>Title/IMDB-ID</mat-label>
-                <input autocomplete="off" formControlName="input" type="text" matInput placeholder="Title/IMDB-ID">
-              </mat-form-field>
-            </p>
+            <mat-label class="searchMSG" *ngIf="searchMSG != ''"> {{searchMSG}} <br></mat-label>
             <p>
               <mat-form-field appearance="outline">
                 <mat-label>Search Method</mat-label>
@@ -31,11 +25,19 @@
                   <mat-option value="title">Title</mat-option>
                 </mat-select>
               </mat-form-field>
+                <br>
+              <mat-form-field appearance="outline">
+                <mat-label>Title/IMDB-ID</mat-label>
+                <input autocomplete="off" formControlName="input" type="text" matInput placeholder="Title/IMDB-ID">
+              </mat-form-field>
+              <mat-form-field id="year" *ngIf="findMovie.value.type == 'title'" appearance="outline">
+                <mat-label>Release Year</mat-label>
+                <input autocomplete="off" formControlName="year" type="text" matInput placeholder="Year">
+              </mat-form-field>
             </p>
             <button mat-raised-button color="primary">Search</button>
           </form>
-            <div *ngIf="selectedMovie" class="movieHolder">
-              <figure class="movie">
+              <figure *ngIf="selectedMovie" class="movie">
                 <div class="movie__hero">
                   <img src="{{selectMovie.img}}" class="movie__img">
                 </div>
@@ -53,7 +55,6 @@
                   </div>
                 </div>
               </figure>
-            </div>
           <form *ngIf="selectedMovie" [formGroup]="addMovie" (ngSubmit)="add()">
             <p>
               <mat-label class="searchMSG" *ngIf="searchMSG != ''"> {{searchMSG}} <br></mat-label>
@@ -67,7 +68,7 @@
             <button mat-raised-button color="primary">Add</button> <button mat-raised-button (click)="reselect()" color="primary">Wrong Movie</button>
           </form>
         </div>
-        <div class="col-md-3 mx-auto my-5 movies" *ngFor="let card of movieCards">
+        <div class="col-md-3 mx-auto movies" *ngFor="let card of movieCards">
           <div class="movieHolder">
                 <figure class="movie">
                   <div class="movie__hero">

@@ -27,10 +27,7 @@ export class DashboardComponent implements OnInit {
   reviewTable: Array<Review>;
   recommendTable: Array<string>;
 
-  starRating: number;
-
   constructor(private router: Router, private http: HttpClient) {
-    this.starRating = 0;
     this.searchMSG = '';
     this.message = '';
     this.activeTable = '';
@@ -42,7 +39,8 @@ export class DashboardComponent implements OnInit {
     });
     this.findMovie = new FormGroup({
       'input': new FormControl('', Validators.required),
-      'type': new FormControl('', Validators.required)
+      'type': new FormControl('', Validators.required),
+      'year': new FormControl('')
     })
     this.selectMovie = {title: '', img: '', desc: '', rating: -1, imdbID: '', director: '', runtime: '',  genre: ''};
     this.selectedMovie = false;
@@ -90,6 +88,19 @@ export class DashboardComponent implements OnInit {
     })
   }
 
+  getMovieTitleYear(title:string, year:string){
+    this.http.get(this.apiurl + '&t=' + title + '&y=' + year).subscribe((res)=>{
+      this.movie = JSON.parse(JSON.stringify(res));
+      console.log(this.movie)
+      this.selectMovie = {title: this.movie.Title, img: this.movie.Poster, desc: this.movie.Plot, rating: -1, imdbID: this.movie.imdbID, director: this.movie.Director, runtime: this.movie.Runtime,  genre: this.movie.Genre}; //change to setting movie based on api info
+      if(this.movie.Response != 'False'){
+        this.selectedMovie = true; }
+      else {
+        this.searchMSG = 'Could not find a movie with that title.';
+      }
+    })
+  }
+
   filltable(table:string){
     if(table == 'rev') {
       this.reviewTable.forEach((movie) => {
@@ -121,7 +132,6 @@ export class DashboardComponent implements OnInit {
 
   recommendLoad(): void {
     this.searchMSG = '';
-    this.starRating = 0;
     this.resetAddMovie();
     this.findMovie.reset();
     this.selectedMovie = false;
@@ -134,9 +144,12 @@ export class DashboardComponent implements OnInit {
   search(): void {
     if(this.findMovie.value.type == 'id'){
       this.getMovieID(this.findMovie.value.input);
-    } else
-    {
-      this.getMovieTitle(this.findMovie.value.input);
+    } else if(this.findMovie.value.type == 'title') {
+      if(this.findMovie.value.year == ''){
+        this.getMovieTitle(this.findMovie.value.input);
+      } else {
+        this.getMovieTitleYear(this.findMovie.value.input, this.findMovie.value.year);
+      }
     }
     this.searchMSG = '';
   }
@@ -148,7 +161,6 @@ export class DashboardComponent implements OnInit {
     } else {
       this.searchMSG = '';
       this.selectMovie.rating = this.addMovie.value.review;
-      //this.selectMovie.rating = this.starRating;
       this.movieCards.forEach((movie) => {
         if (movie.imdbID == this.selectMovie.imdbID) {
           added = true;
@@ -159,7 +171,6 @@ export class DashboardComponent implements OnInit {
       } else {
         this.movieCards.push(this.selectMovie);
         //add review to DB ensure to div selectMovie.rating by 2
-        this.starRating = 0;
         this.resetAddMovie();
         this.findMovie.reset();
         this.selectedMovie = false;
@@ -174,6 +185,7 @@ export class DashboardComponent implements OnInit {
   reselect(): void {
     this.selectedMovie = false;
     this.searchMSG = '';
+    this.resetAddMovie();
   }
 
   delete(movie: MovieCard){

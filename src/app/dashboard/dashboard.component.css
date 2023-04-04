@@ -72,6 +72,8 @@
   margin: auto;
   width:80%;
   text-align:center;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .movieHolder {
@@ -129,6 +131,10 @@
 
 ::ng-deep .mat-select-value {
   color: #F7FFF7;
+}
+
+#year {
+  padding-left: 20px;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
