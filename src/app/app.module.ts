@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 
+import { HttpClientModule } from "@angular/common/http";
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -16,6 +17,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {MatSelectModule} from "@angular/material/select";
+import { ResourcesComponent } from './resources/resources.component';
+import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
@@ -24,21 +29,27 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     HomeComponent,
     LoginComponent,
     SignupComponent,
-    DashboardComponent
+    DashboardComponent,
+    ResourcesComponent,
+    AboutComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
 
-        MatButtonModule,
-        MatCardModule,
-        MatInputModule,
+    MatButtonModule,
+    MatCardModule,
+    MatInputModule,
 
-        FormsModule,
-        ReactiveFormsModule,
-        MatToolbarModule,
-    ],
+    FormsModule,
+    ReactiveFormsModule,
+    MatToolbarModule,
+
+    HttpClientModule,
+    NgbModule,
+    MatSelectModule,
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

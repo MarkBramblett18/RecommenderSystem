@@ -1,0 +1,30 @@
+.resources {
+  padding-left: 22%;
+  padding-top: 30px;
+  background-color: #292F36;
+}
+
+h1 {
+  font-size: 40px;
+  color: #4ECDC4;
+}
+
+.description {
+  font-size: 20px;
+  color: #F7FFF7;
+}
+
+p {
+  padding: 10px 0px;
+  font-size: 30px;
+  color: #F7FFF7;
+}
+
+.linkedpages {
+  text-decoration: none;
+  color: #4ECDC4;
+}
+
+.linkedpages:hover{
+  color: #3C9E98;
+}
