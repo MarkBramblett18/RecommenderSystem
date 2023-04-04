@@ -16,7 +16,7 @@
 }
 
 .optionText {
-  color: white;
+  color: #F7FFF7;
   text-decoration: none;
   display: inline-block;
   text-align: center;
@@ -24,7 +24,7 @@
   font-family: Futura,Trebuchet MS,Arial,sans-serif;
 }
 .optionText:hover{
-  color: #ADADAD;
+  color: #7D82B8;
 }
 
 .dashOption {
@@ -56,7 +56,6 @@
   margin:auto;
   background-color:#292F36;
   padding:5%;
-  padding: top 2%;
   border-bottom-right-radius: 23px;
   border-bottom-left-radius: 23px;
   border-top-right-radius: 23px;
@@ -64,24 +63,15 @@
   overflow-y:scroll;
 }
 
-.addRuleDiv {
-  background-color:aliceblue;
+.addMovieDiv {
+  background-color: #F7FFF7;
   border-bottom-right-radius: 23px;
   border-bottom-left-radius: 23px;
   border-top-right-radius: 23px;
   border-top-left-radius: 23px;
   margin: auto;
-  width:50%;
+  width:80%;
   text-align:center;
-  padding: top 5%;
-}
-
-.mat-card{
-  margin:auto;
-  background-color: #4ECDC4;
-  border:3px solid black;
-  min-width: 100%;
-  max-width: 100%;
 }
 
 .movieHolder {
@@ -94,9 +84,94 @@
   color: #F7FFF7;
 }
 
-.rules {
-  padding: top 10px;
+.movies {
   display: table;
   width: 100%
+}
+
+.stars {
+  font-size: 2rem;
+}
+
+.card-stars {
+  font-size: 1.5rem;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+.movieHolder {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.movie {
+  max-height: 300px;
+  border-radius: 5px;
+  display: flex;
+  box-shadow: 0 5px 20px 10px rgba(0, 0, 0, .2);
+  overflow: hidden;
+}
+
+.movie__hero {
+  max-width: 40%;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.movie__img {
+  max-width: 100%;
+  display: block;
+  max-height: 300px;
+}
+
+.movie__content {
+  background-color: #F7FFF7;
+  flex: 1;
+  padding: 35px 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.movie__title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.heading__primary {
+  font-size: 16px;
+  margin-right: auto;
+  color: #3C9E98;
+}
+
+.movie__tag {
+  font-size: 10px;
+  color: #F7FFF7;
+  padding: 2px 7px;
+  border-radius: 100px;
+  margin-right: 8px;
+  display: block;
+  text-transform: uppercase;
+
+}
+
+.movie__tag--1 {
+  background-color: #3C9E98;
+}
+
+.movie__description {
+  font-size: 14px;
+}
+
+.movie__details {
+  display: flex;
+  margin: auto;
+}
+
+.movie__detail {
+  font-size: 13px;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
 }
 

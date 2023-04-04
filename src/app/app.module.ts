@@ -18,6 +18,7 @@ import { MatInputModule } from '@angular/material/input';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {MatSelectModule} from "@angular/material/select";
 
 
 @NgModule({
@@ -28,22 +29,23 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SignupComponent,
     DashboardComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
 
-        MatButtonModule,
-        MatCardModule,
-        MatInputModule,
+    MatButtonModule,
+    MatCardModule,
+    MatInputModule,
 
-        FormsModule,
-        ReactiveFormsModule,
-        MatToolbarModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatToolbarModule,
 
-      HttpClientModule,
-        NgbModule,
-    ],
+    HttpClientModule,
+    NgbModule,
+    MatSelectModule,
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

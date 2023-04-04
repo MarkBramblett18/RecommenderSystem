@@ -14,9 +14,10 @@
   <div class="cardDiv">
     <div class="container">
       <div class="row">
-        <div class="addRuleDiv" *ngIf="activeTable == 'rev'">
+        <div class="addMovieDiv" *ngIf="activeTable == 'rev'">
           <form *ngIf="!selectedMovie" [formGroup]="findMovie" (ngSubmit)="search()">
             <p>
+              <mat-label class="searchMSG" *ngIf="searchMSG != ''"> {{searchMSG}} <br></mat-label>
               <mat-form-field appearance="outline">
                 <mat-label>Title/IMDB-ID</mat-label>
                 <input autocomplete="off" formControlName="input" type="text" matInput placeholder="Title/IMDB-ID">
@@ -24,48 +25,72 @@
             </p>
             <p>
               <mat-form-field appearance="outline">
-                <mat-label>Search Type</mat-label>
-                <input autocomplete="off" formControlName="type" type="text" matInput placeholder="Search Type">
+                <mat-label>Search Method</mat-label>
+                <mat-select formControlName="type">
+                  <mat-option value="id">IMDB ID</mat-option>
+                  <mat-option value="title">Title</mat-option>
+                </mat-select>
               </mat-form-field>
             </p>
             <button mat-raised-button color="primary">Search</button>
           </form>
-          <mat-card *ngIf="selectedMovie">
-            <mat-card-content>
-              <mat-card-title>
-                <h4>{{selectMovie.title}}</h4>
-              </mat-card-title>
-
-              <mat-card-title>
-                <h4>{{selectMovie.desc}}</h4>
-              </mat-card-title>
-            </mat-card-content>
-          </mat-card>
+            <div *ngIf="selectedMovie" class="movieHolder">
+              <figure class="movie">
+                <div class="movie__hero">
+                  <img src="{{selectMovie.img}}" class="movie__img">
+                </div>
+                <div class="movie__content">
+                  <div class="movie__title">
+                    <h1 class="heading__primary">{{selectMovie.title}}</h1>
+                    <div class="movie__tag movie__tag--1">{{selectMovie.genre}}</div>
+                  </div>
+                  <p class="movie__description">
+                    {{selectMovie.desc}}
+                  </p>
+                  <div class="movie__details">
+                    <p class="movie__detail">{{selectMovie.director}}</p>
+                    <p class="movie__detail">{{selectMovie.runtime}}</p>
+                  </div>
+                </div>
+              </figure>
+            </div>
           <form *ngIf="selectedMovie" [formGroup]="addMovie" (ngSubmit)="add()">
             <p>
-              <mat-form-field appearance="outline">
+              <mat-label class="searchMSG" *ngIf="searchMSG != ''"> {{searchMSG}} <br></mat-label>
+              <mat-label>Rating</mat-label><br>
+              <ngb-rating class="stars" [max]="10" [(rate)]="addMovie.value.review" [readonly]="false" formControlName="review"></ngb-rating>
+              <!-- <mat-form-field appearance="outline">
                 <mat-label>Review</mat-label>
                 <input autocomplete="off" formControlName="review" type="text" matInput placeholder="Review">
-              </mat-form-field>
+              </mat-form-field> -->
             </p>
             <button mat-raised-button color="primary">Add</button> <button mat-raised-button (click)="reselect()" color="primary">Wrong Movie</button>
           </form>
         </div>
-        <div class="col-md-3 mx-auto my-5 rules" *ngFor="let card of movieCards">
+        <div class="col-md-3 mx-auto my-5 movies" *ngFor="let card of movieCards">
           <div class="movieHolder">
-            <mat-card>
-              <mat-card-content>
-                <mat-card-title>
-                  <h4>{{card.title}}</h4>
-                </mat-card-title>
-
-                <mat-card-title>
-                  <h4>{{card.desc}}</h4>
-                </mat-card-title>
-
-                <button mat-raised-button color="primary" *ngIf="activeTable == 'rev'" (click)="delete(card)">Delete</button>
-              </mat-card-content>
-            </mat-card>
+                <figure class="movie">
+                  <div class="movie__hero">
+                    <img src="{{card.img}}" class="movie__img">
+                  </div>
+                  <div class="movie__content">
+                    <div class="movie__title">
+                      <h1 class="heading__primary">{{card.title}}</h1>
+                      <div class="movie__tag movie__tag--1">{{card.genre}}</div>
+                    </div>
+                    <p class="movie__description">
+                      {{card.desc}}
+                    </p>
+                    <div class="movie__details">
+                      <p class="movie__detail">{{card.director}}</p>
+                      <p class="movie__detail">{{card.runtime}}</p>
+                      <span *ngIf="card.rating>=0">
+                      <ngb-rating class="card-stars" [max]="10" [(rate)]="card.rating" [readonly]="true"></ngb-rating>
+                      </span>
+                    </div>
+                    <button mat-raised-button color="primary" *ngIf="activeTable == 'rev'" (click)="delete(card)">Delete</button>
+                  </div>
+                </figure>
           </div>
         </div>
       </div>
