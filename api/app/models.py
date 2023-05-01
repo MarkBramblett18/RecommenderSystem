@@ -11,3 +11,22 @@ class User(AbstractUser):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+
+class Movie(models.Model):
+    movie_id = models.IntegerField(primary_key=True)
+    title = models.CharField(max_length=255)
+    genre = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.title
+    
+class Rating(models.Model):
+    rating = models.IntegerField()
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    
+
+class Link(models.Model):
+    movie_id = models.IntegerField(primary_key=True)
+    imdb_id = models.IntegerField()
+    tmdb_id = models.IntegerField()
