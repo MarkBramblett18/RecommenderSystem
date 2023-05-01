@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
       return;
     this.http.post('http://localhost:8000/login', this.loginForm.getRawValue(), {
       withCredentials: true
-    }).subscribe(() => this.router.navigate(['/dashboard']));
+    }).subscribe(() => this.router.navigate(['/']));
     this.errorMessage = "Incorrect email or password.";
   }
 }
