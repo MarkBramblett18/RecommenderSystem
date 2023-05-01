@@ -21,6 +21,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatSelectModule} from "@angular/material/select";
 import { ResourcesComponent } from './resources/resources.component';
 import { AboutComponent } from './about/about.component';
+import { NavComponent } from './nav/nav.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { AboutComponent } from './about/about.component';
     SignupComponent,
     DashboardComponent,
     ResourcesComponent,
-    AboutComponent
+    AboutComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,

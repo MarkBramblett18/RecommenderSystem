@@ -1,16 +1,4 @@
 <body>
-<mat-toolbar color="primary" class="navbar">
-  <div> <a><h1>Movie Recommender:</h1> <h3>Personalized Movie Recommendations</h3></a> </div>
-  <div class = "linksHighlight">
-    <a class="linkedpages" routerLink="">HOME</a>
-    <a class="linkedpages" routerLink="about">ABOUT</a>
-    <a class ="linkedpages" href="https://github.com/MarkBramblett18/RecommenderSystem">SOURCE CODE</a>
-    <a class="linkedpages" routerLink="resources">RESOURCES</a>
-    <a class="linkedpages" routerLink="/dashboard">User Dashboard</a>
-    <a class="linkedpages" routerLink="/signup">Sign Up</a>
-    <a class="linkedpages" (click)="logout()" routerLink="">Log Out</a>
-    <a class="linkedpages" routerLink="/login">Log In</a>
-  </div>
-</mat-toolbar>
+<app-nav></app-nav>
 <router-outlet></router-outlet>
 </body>
