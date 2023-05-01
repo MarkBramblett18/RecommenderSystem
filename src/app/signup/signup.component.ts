@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -13,9 +14,9 @@ export class SignupComponent implements OnInit {
   signupForm: FormGroup;
   errorMessage: string;
 
-  constructor(private router: Router) {
+  constructor(private http: HttpClient, private router: Router) {
     this.signupForm = new FormGroup({
-      'displayName': new FormControl('', Validators.required),
+      'name': new FormControl('', Validators.required),
       'email': new FormControl('', [Validators.required, Validators.email]),
       'password': new FormControl('', Validators.required)
     });
@@ -30,8 +31,10 @@ export class SignupComponent implements OnInit {
   signup() {
     if (this.signupForm.invalid)                            // if there's an error in the form, don't submit it
       return;
+    this.http.post('http://localhost:8000/register', this.signupForm.getRawValue())
+      .subscribe(() => this.router.navigate(['/login']));
 
-    this.errorMessage = "disp name: " + this.signupForm.value.displayName +" email: " + this.signupForm.value.email + " pass: " + this.signupForm.value.password
+    this.errorMessage = "Email already in use.";
   }
 
 
