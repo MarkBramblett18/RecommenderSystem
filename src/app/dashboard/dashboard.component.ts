@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import { HttpClient } from "@angular/common/http";
+import {Emitters} from "../emitters/emitters";
 
 type MovieCard = { title: string, img: string, desc: string, rating: number, imdbID: string, director: string, runtime: string,  genre: string}
 type Review = { imdbID: string, rating: number}
@@ -59,7 +60,15 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.http.get('http://localhost:8000/user', {withCredentials: true}).subscribe(
+      (res: any) => {
+        Emitters.authEmitter.emit(true);
+      },
+      err => {
+        Emitters.authEmitter.emit(false);
+        this.router.navigate(['/home']);
+      }
+    );
   }
 
   getMovieID(id:string){

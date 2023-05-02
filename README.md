@@ -2,7 +2,7 @@
 
 Have python installed, then install the following using pip:
 
-  django, djangorestframework, django-cors-headers, PyJWT
+  django, djangorestframework, django-cors-headers, PyJWT, tensorflow, tensorflow_recommenders, pandas
 
 Navigate to the api folder of the project then use 'python manage.py runserver'.
 
