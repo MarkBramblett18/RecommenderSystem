@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, Movie, Rating
+from .models import User, Movie, Rating, Link
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -27,3 +27,8 @@ class RatingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rating
         fields = ['rating', 'movie_id', 'user_id']
+
+class LinkSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Link
+        fields = ['movie_id', 'imdb_id', 'tmdb_id']

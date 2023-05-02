@@ -2,3 +2,6 @@ django
 djangorestframework
 django-cors-headers
 PyJWT
+tensorflow
+tensorflow_recommenders
+pandas
