@@ -1,4 +1,20 @@
-# RecomdenderSystem
+# To run the back-end
+
+Have python installed, then install the following using pip:
+
+  django, djangorestframework, django-cors-headers, PyJWT
+
+Navigate to the api folder of the project then use 'python manage.py runserver'.
+
+# To run the front-end
+
+Have Node and NPM installed.
+
+Ensure all localhost links in the typescript files are set to the correct port you are running the back-end from.
+
+Navigate to the project folder then use 'ng serve --open'.
+
+# RecommenderSystem
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.3.
 
