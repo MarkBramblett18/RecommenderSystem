@@ -3,11 +3,11 @@
   <div class = "linksHighlight">
     <a class="linkedpages" routerLink="">HOME</a>
     <a class="linkedpages" routerLink="about">ABOUT</a>
-    <a class ="linkedpages" href="https://github.com/MarkBramblett18/RecommenderSystem">SOURCE CODE</a>
     <a class="linkedpages" routerLink="resources">RESOURCES</a>
-    <a class="linkedpages" routerLink="/dashboard" *ngIf="authenticated">User Dashboard</a>
-    <a class="linkedpages" routerLink="/signup" *ngIf="!authenticated">Sign Up</a>
-    <a class="linkedpages" (click)="logout()" routerLink="" *ngIf="authenticated">Log Out</a>
-    <a class="linkedpages" routerLink="/login" *ngIf="!authenticated">Log In</a>
+    <a class ="linkedpages" href="https://github.com/MarkBramblett18/RecommenderSystem">SOURCE CODE</a>
+    <a class="linkedpages" routerLink="/dashboard" *ngIf="authenticated">USER DASHBOARD</a>
+    <a class="linkedpages" routerLink="/signup" *ngIf="!authenticated">SIGN UP</a>
+    <a class="linkedpages" (click)="logout()" routerLink="" *ngIf="authenticated">LOG OUT</a>
+    <a class="linkedpages" routerLink="/login" *ngIf="!authenticated">LOG IN</a>
   </div>
 </mat-toolbar>

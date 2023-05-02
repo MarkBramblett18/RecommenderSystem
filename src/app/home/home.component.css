@@ -22,7 +22,7 @@ body {
 #description {
   text-align: center;
   line-height: 1;
-  color: #3C9E98;
+  color: #F7FFF7;
   font-family: Futura,Trebuchet MS,Arial,sans-serif;
 }
 
@@ -82,7 +82,7 @@ body {
 }
 
 .homedescription {
-  color: #3C9E98;
+  color: #F7FFF7;
   text-align: left;
   font-family: Futura,Trebuchet MS,Arial,sans-serif;
 }
@@ -106,4 +106,14 @@ ul {
 .selfimage {
   padding-top: 15px;
   padding-bottom: 15px;
+}
+
+#instructions {
+  color:#F7FFF7;
+  text-align: left;
+  display: inline-block;
+}
+
+#listContainer {
+  text-align: center;
 }

@@ -22,7 +22,7 @@ body {
 #description {
   text-align: center;
   line-height: 1;
-  color: #3C9E98;
+  color: #F7FFF7;
   font-family: Futura,Trebuchet MS,Arial,sans-serif;
 }
 
@@ -84,7 +84,7 @@ body {
 }
 
 .aboutdescription {
-  color: #3C9E98;
+  color: #F7FFF7;
   text-align: left;
   font-family: Futura,Trebuchet MS,Arial,sans-serif;
 }
@@ -116,9 +116,13 @@ ul {
 }
 
 #leader {
-  color:#7D82B8;
+  color:#4ECDC4;
 }
 
 .attentionGrabber {
-  color:#7D82B8;
+  color:#F7FFF7;
+}
+
+.quote {
+  color:#F7FFF7;
 }

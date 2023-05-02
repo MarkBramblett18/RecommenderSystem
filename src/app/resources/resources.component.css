@@ -1,23 +1,113 @@
-.resources {
-  padding-left: 22%;
-  padding-top: 30px;
-  background-color: #292F36;
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+body {
+  /* background-color: #2F6E4D; */
+  background-image: linear-gradient(#4ECDC4, #292F36);
+  font-family: 'Work Sans', sans-serif;
 }
 
-h1 {
-  font-size: 40px;
+
+.column {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#leader {
+  text-align: center;
+  line-height: .1;
   color: #4ECDC4;
+  font-family: Futura,Trebuchet MS,Arial,sans-serif;
 }
 
-.description {
+#description {
+  text-align: center;
+  line-height: 1;
+  color: #F7FFF7;
+  font-family: Futura,Trebuchet MS,Arial,sans-serif;
+}
+
+#textboxBackground {
+  width: 100%;
+  background-color: #292F36;
+  margin-top: 0%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed; /*make sure when scrolling its fixed*/
+  padding-top: 35px;
+  padding-bottom: 50px;
+}
+
+#attentionGrabber {
   font-size: 20px;
-  color: #F7FFF7;
+  font-weight: 500;
+  color: #3C9E98;
+  -webkit-text-stroke-width: .25px;
+  /* -webkit-text-stroke-color: #ffffff; */
+  text-align: left;
+  margin-bottom: 10px;
+  padding-left: 7px;
+  font-family: Futura,Trebuchet MS,Arial,sans-serif;
 }
 
-p {
-  padding: 10px 0px;
-  font-size: 30px;
+
+
+.column2 {
+  float: left;
+  width: 300px;
+  padding-right: 20px;
+}
+
+.c2 {
+  background-color: #b1b1bd;
+  border-color: black;
+  border: groove;
+  padding-left: 20px;
+  margin-bottom: 19px;
+}
+
+.c2 h2 {
+  padding-top: 10px;
+  margin-bottom: 5px;
+}
+
+.c2 ul {
+  padding-bottom: 10px;
+}
+
+.c2 ul li {
+  padding-bottom: 5px;
+}
+
+.aboutcolumns {
+  padding: 20px;
+}
+
+.resourcesdescription {
   color: #F7FFF7;
+  text-align: left;
+  font-family: Futura,Trebuchet MS,Arial,sans-serif;
+}
+
+.resourcesdescriptiond h3 {
+  font-size: 15px;
+  line-height: .5;
+  padding-left: 7px;
+  font-family: Futura,Trebuchet MS,Arial,sans-serif;
+}
+
+::placeholder {
+  color: #ADADAD;
+}
+
+ul {
+  padding-left: 20px;
+  font-size: 20px;
+}
+
+.selfimage {
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .linkedpages {
@@ -25,6 +115,18 @@ p {
   color: #4ECDC4;
 }
 
-.linkedpages:hover{
+.linkedpages:hover {
   color: #3C9E98;
+}
+
+#leader {
+  color:#4ECDC4;
+}
+
+.attentionGrabber {
+  color:#F7FFF7;
+}
+
+.quote {
+  color:#F7FFF7;
 }
