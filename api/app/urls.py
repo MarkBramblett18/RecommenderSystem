@@ -8,8 +8,8 @@ urlpatterns = [
     path('user', UserView.as_view()),
     path('logout', LogoutView.as_view()),
     path('movie/<int:movie_id>', views.movie),
-    path('recommend', views.recommend),
+    path('recommend/<int:user_id>', views.recommend),
     path('search/<str:title>', views.search),
-    path('rating/<int:movie_id>', views.rating),
-    path('rated', views.rated),
+    path('rating/<int:user_id>/<int:movie_id>', views.rating),
+    path('rated/<int:user_id>', views.rated),
 ]

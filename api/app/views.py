@@ -164,9 +164,8 @@ class LogoutView(APIView):
         return response
     
 @api_view(['POST'])
-def recommend(request):
+def recommend(request, user_id):
     if request.method == 'POST':
-        user_id = request.data['user_id']
         if user_id is not None:
             if User.objects.filter(user_id=user_id).exists():
                 movies = Movie.objects.filter(movie_id__in=tensorflow(user_id))
@@ -216,7 +215,7 @@ def search(request, title):
                 return Response(content)
 
 @api_view(['POST'])
-def rating(request, movie_id):
+def rating(request, user_id, movie_id):
     if request.method == 'POST':
         if movie_id is not None:
             try:
@@ -226,8 +225,7 @@ def rating(request, movie_id):
                         rating = request.data.get('rating')
                     else:
                         rating = None
-                    
-                    user_id = request.data['user_id']
+                        
                     user = User.objects.get(pk=user_id)
                     movie_rating_object = Rating.objects.filter(user=user, movie=movie).exists()
                     if movie_rating_object:
@@ -253,9 +251,8 @@ def rating(request, movie_id):
         return Response(content)
     
 @api_view(['GET'])
-def rated(request):
+def rated(request, user_id):
     if request.method == 'GET':
-        user_id = request.data['user_id']
         user = User.objects.get(pk=user_id)
         rating = Rating.objects.filter(user=user)
         if rating.exists():
