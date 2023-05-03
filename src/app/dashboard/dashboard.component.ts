@@ -79,6 +79,8 @@ export class DashboardComponent implements OnInit {
     this.http.get('http://localhost:8000/rated/'+this.user.user_id, {withCredentials: true}).subscribe(
       (res: any) => {
         this.rated = JSON.parse(JSON.stringify(res));
+        console.log(JSON.parse(JSON.stringify(res)));
+        this.reviewTable = [];
         this.parseRated();
       },
       err => {
@@ -145,7 +147,7 @@ export class DashboardComponent implements OnInit {
         this.http.get(this.apiurl + "&i=" + movie.imdbID).subscribe((res)=>{
           this.movie = JSON.parse(JSON.stringify(res));
           console.log(this.movie);
-          this.movieCards.push({title: this.movie.Title, img: this.movie.Poster, desc: this.movie.Plot, rating: movie.rating*2, imdbID: this.movie.imdbID, director: this.movie.Director, runtime: this.movie.Runtime,  genre: this.movie.Genre}); //change to setting movie based on api info
+          this.movieCards.push({title: this.movie.Title, img: this.movie.Poster, desc: this.movie.Plot, rating: movie.rating, imdbID: this.movie.imdbID, director: this.movie.Director, runtime: this.movie.Runtime,  genre: this.movie.Genre}); //change to setting movie based on api info
         });
       });
     } else
@@ -176,7 +178,7 @@ export class DashboardComponent implements OnInit {
     this.movieCards = [];
 
     this.recommendTable = [];
-    //this.recommendPull();
+    this.recommendPull();
     this.activeTable = 'rec';
 
   }
@@ -267,7 +269,7 @@ export class DashboardComponent implements OnInit {
   }
 
   addReview2(movieID:any) {
-    this.http.post('http://localhost:8000/rating/'+this.user.user_id+'/'+movieID, this.addMovie.getRawValue()).subscribe(
+    this.http.post('http://localhost:8000/rating/'+ movieID +'/'+this.user.user_id, this.addMovie.getRawValue()).subscribe(
       (res: any) => {
         console.log(JSON.parse(JSON.stringify(res)))
         this.movieCards.push(this.selectMovie);
