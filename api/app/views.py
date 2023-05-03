@@ -215,7 +215,7 @@ def search(request, title):
                 return Response(content)
 
 @api_view(['POST'])
-def rating(request, user_id, movie_id):
+def rating(request, movie_id, user_id):
     if request.method == 'POST':
         if movie_id is not None:
             try:
@@ -225,7 +225,7 @@ def rating(request, user_id, movie_id):
                         rating = request.data.get('rating')
                     else:
                         rating = None
-                        
+
                     user = User.objects.get(pk=user_id)
                     movie_rating_object = Rating.objects.filter(user=user, movie=movie).exists()
                     if movie_rating_object:
