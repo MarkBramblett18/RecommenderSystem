@@ -222,3 +222,11 @@
   align-items: center;
 }
 
+.text {
+  color: #F7FFF7;
+  text-align: center;
+}
+
+#recommendRefresh {
+  margin: auto;
+}

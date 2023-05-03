@@ -59,7 +59,7 @@
             <p>
               <mat-label class="searchMSG" *ngIf="searchMSG != ''"> {{searchMSG}} <br></mat-label>
               <mat-label>Rating</mat-label><br>
-              <ngb-rating class="stars" [max]="10" [(rate)]="addMovie.value.review" [readonly]="false" formControlName="review"></ngb-rating>
+              <ngb-rating class="stars" [max]="5" [(rate)]="addMovie.value.rating" [readonly]="false" formControlName="rating"></ngb-rating>
               <!-- <mat-form-field appearance="outline">
                 <mat-label>Review</mat-label>
                 <input autocomplete="off" formControlName="review" type="text" matInput placeholder="Review">
@@ -67,6 +67,10 @@
             </p>
             <button mat-raised-button color="primary">Add</button> <button mat-raised-button (click)="reselect()" color="primary">Wrong Movie</button>
           </form>
+        </div>
+        <div id="recommendRefresh" class="container addMovieDiv" *ngIf="activeTable == 'rec'">
+          <div class="text">Please click the refresh button after waiting some time to view your recommendations.</div>
+          <button mat-raised-button color="primary" (click)="filltable('rec')">Refresh Recommendations</button>
         </div>
         <div class="col-md-3 mx-auto movies" *ngFor="let card of movieCards">
           <div class="movieHolder">
@@ -86,10 +90,9 @@
                       <p class="movie__detail">{{card.director}}</p>
                       <p class="movie__detail">{{card.runtime}}</p>
                       <span *ngIf="card.rating>=0">
-                      <ngb-rating class="card-stars" [max]="10" [(rate)]="card.rating" [readonly]="true"></ngb-rating>
+                      <ngb-rating class="card-stars" [max]="5" [(rate)]="card.rating" [readonly]="true"></ngb-rating>
                       </span>
                     </div>
-                    <button mat-raised-button color="primary" *ngIf="activeTable == 'rev'" (click)="delete(card)">Delete</button>
                   </div>
                 </figure>
           </div>

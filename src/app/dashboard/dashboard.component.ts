@@ -20,6 +20,11 @@ export class DashboardComponent implements OnInit {
   selectedMovie: boolean;
   selectMovie: MovieCard;
 
+  recommended: Array<any>;
+  rated: Array<any>;
+  user: any;
+  apiRating: any;
+
   movie: any;
   apiurl: any;
   searchMSG: string;
@@ -29,6 +34,10 @@ export class DashboardComponent implements OnInit {
   recommendTable: Array<string>;
 
   constructor(private router: Router, private http: HttpClient) {
+    this.recommended = [];
+    this.apiRating = '';
+    this.user = '';
+    this.rated = [];
     this.searchMSG = '';
     this.message = '';
     this.activeTable = '';
@@ -36,7 +45,7 @@ export class DashboardComponent implements OnInit {
     this.reviewTable = [];
     this.recommendTable = [];
     this.addMovie = new FormGroup({
-      'review': new FormControl(0, Validators.min(1) )
+      'rating': new FormControl(0, Validators.min(1) )
     });
     this.findMovie = new FormGroup({
       'input': new FormControl('', Validators.required),
@@ -46,23 +55,18 @@ export class DashboardComponent implements OnInit {
     this.selectMovie = {title: '', img: '', desc: '', rating: -1, imdbID: '', director: '', runtime: '',  genre: ''};
     this.selectedMovie = false;
     this.apiurl = 'http://www.omdbapi.com/?apikey=54e2e839';
-
-    this.recommendTable.push("tt10726286")
-    this.recommendTable.push("tt0133093")
-    this.recommendTable.push("tt1482967")
-    this.recommendTable.push("tt0103923")
-    this.recommendTable.push("tt1482967")
-    this.recommendTable.push("tt0103923")
-    this.reviewTable.push({imdbID:"tt10726286", rating:1.5})
-    this.reviewTable.push({imdbID:"tt0133093", rating:2})
-    this.reviewTable.push({imdbID:"tt1482967", rating:4})
-    this.reviewTable.push({imdbID:"tt0103923", rating:5})
   }
 
   ngOnInit(): void {
+    this.getUser();
+  }
+
+  getUser(){
     this.http.get('http://localhost:8000/user', {withCredentials: true}).subscribe(
       (res: any) => {
         Emitters.authEmitter.emit(true);
+        this.user = JSON.parse(JSON.stringify(res));
+        this.getRated();
       },
       err => {
         Emitters.authEmitter.emit(false);
@@ -71,7 +75,32 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  getMovieID(id:string){
+  getRated(){
+    this.http.get('http://localhost:8000/rated/'+this.user.user_id, {withCredentials: true}).subscribe(
+      (res: any) => {
+        this.rated = JSON.parse(JSON.stringify(res));
+        this.parseRated();
+      },
+      err => {
+        console.log("error");
+      }
+    );
+  }
+
+  parseRated(){
+    this.rated.forEach((rating) => {
+      this.http.get('http://localhost:8000/movie/' + rating.movie_id).subscribe((res)=>{
+        this.apiRating = JSON.parse(JSON.stringify(res));
+        let imdbID: String = this.apiRating.imdb_id
+        for(let i = 9; i>JSON.stringify(imdbID).length ;) {
+          imdbID = "0" + imdbID;
+        }
+        this.reviewTable.push({imdbID: "tt" + imdbID, rating: rating.rating}); //add to review table
+      });
+    });
+  }
+
+  getMovieIMDBID(id: string){
     this.http.get(this.apiurl + "&i=" + id).subscribe((res)=>{
       this.movie = JSON.parse(JSON.stringify(res));
       console.log(this.movie);
@@ -146,13 +175,40 @@ export class DashboardComponent implements OnInit {
     this.selectedMovie = false;
     this.movieCards = [];
 
-    this.filltable('rec');
+    this.recommendTable = [];
+    //this.recommendPull();
     this.activeTable = 'rec';
+
+  }
+
+  recommendParse() {
+    this.recommended.forEach((recommend) => {
+      this.http.get('http://localhost:8000/movie/' + recommend.movie_id).subscribe((res)=>{
+        this.apiRating = JSON.parse(JSON.stringify(res));
+        let imdbID: String = this.apiRating.imdb_id
+        for(let i = 9; i>JSON.stringify(imdbID).length ;) {
+          imdbID = "0" + imdbID;
+        }
+        this.recommendTable.push("tt" + imdbID); //add to recommend table
+      });
+    });
+  }
+
+  recommendPull() {
+    this.http.post('http://localhost:8000/recommend/'+this.user.user_id, {withCredentials: true}).subscribe(
+      (res: any) => {
+        this.recommended = JSON.parse(JSON.stringify(res));
+        this.recommendParse();
+      },
+      err => {
+        console.log("error");
+      }
+    );
   }
 
   search(): void {
     if(this.findMovie.value.type == 'id'){
-      this.getMovieID(this.findMovie.value.input);
+      this.getMovieIMDBID(this.findMovie.value.input);
     } else if(this.findMovie.value.type == 'title') {
       if(this.findMovie.value.year == ''){
         this.getMovieTitle(this.findMovie.value.input);
@@ -165,41 +221,73 @@ export class DashboardComponent implements OnInit {
 
   add(): void {
     let added = false;
-    if(!(this.addMovie.value.review>0)){
+    if(!(this.addMovie.value.rating>0)){
       this.searchMSG = 'A star rating is required to add a movie.';
     } else {
       this.searchMSG = '';
-      this.selectMovie.rating = this.addMovie.value.review;
+      this.selectMovie.rating = this.addMovie.value.rating;
       this.movieCards.forEach((movie) => {
         if (movie.imdbID == this.selectMovie.imdbID) {
           added = true;
         }
       });
       if (added) {
-        this.searchMSG = 'Movie already reviewed.';
+        this.removeExisting();
+        this.addReview(this.selectMovie.title);
       } else {
-        this.movieCards.push(this.selectMovie);
+        this.addReview(this.selectMovie.title);
         //add review to DB ensure to div selectMovie.rating by 2
-        this.resetAddMovie();
         this.findMovie.reset();
         this.selectedMovie = false;
       }
     }
   }
 
+  removeExisting() {
+    this.movieCards.forEach((movie) => {
+      if (movie.imdbID == this.selectMovie.imdbID) {
+        const index = this.movieCards.indexOf(movie, 0);
+        this.movieCards.splice(index, 1);
+      }
+    });
+  }
+
+  addReview(title:string) {
+    this.http.get('http://localhost:8000/search/'+title, {withCredentials: true}).subscribe(
+      (res: any) => {
+        console.log(JSON.parse(JSON.stringify(res)));
+        if(JSON.parse(JSON.stringify(res)).message == "No movie with this title")
+          this.searchMSG = "Movie not in database yet.";
+          else this.addReview2(JSON.parse(JSON.stringify(res))[0].movie_id);
+      },
+      err => {
+        console.log("error");
+      }
+    );
+  }
+
+  addReview2(movieID:any) {
+    this.http.post('http://localhost:8000/rating/'+this.user.user_id+'/'+movieID, this.addMovie.getRawValue()).subscribe(
+      (res: any) => {
+        console.log(JSON.parse(JSON.stringify(res)))
+        this.movieCards.push(this.selectMovie);
+        this.resetAddMovie();
+      },
+      err => {
+
+      }
+    );
+  }
+
   resetAddMovie(): void {
-    this.addMovie.get('review').setValue(0);
+    this.addMovie.get('rating').setValue(0);
   }
 
   reselect(): void {
     this.selectedMovie = false;
-    this.searchMSG = '';
+    if(this.searchMSG != 'Movie not in database yet.') {
+      this.searchMSG = '';
+    }
     this.resetAddMovie();
-  }
-
-  delete(movie: MovieCard){
-    const index = this.movieCards.indexOf(movie, 0);
-    this.movieCards.splice(index, 1);
-    //delete review from DB
   }
 }
