@@ -8,7 +8,7 @@ Navigate to the api folder of the project then use 'python manage.py runserver'.
 
 # To run the front-end
 
-Have Node and NPM installed.
+Have Node, NPM, and @angular/cli installed.
 
 Ensure all localhost links in the typescript files are set to the correct port you are running the back-end from.
 
